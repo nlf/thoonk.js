@@ -16,7 +16,7 @@ Recurring.prototype.scriptdir = __dirname + '/scripts/recurring';
     //config should have {timeout: seconds}
     this.create = function(config, callback) {
         config = JSON.stringify(config);
-        return this.runscript('create', [config], callback);
+        return this.runscript('create', [config, Date.now().toString()], callback);
     };
 
     this.exists = function(callback) {

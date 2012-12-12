@@ -1,7 +1,8 @@
 --name, config
-local name = ARGV[1];
-local config = cjson.decode(ARGV[2]);
+local name, config, curtime = unpack(ARGV);
+local config = cjson.decode(config);
 
+redis.call('SET', 'recurring.lastcheck:'..name, curtime);
 for key, value in pairs(config) do
     redis.call('HSET', 'recurring.config:'..name, key, value);
 end
